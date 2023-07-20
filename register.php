@@ -1,4 +1,5 @@
 <?php
+include_once 'app/guest.php';
 include_once 'app/User.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -11,8 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo 'User register';
     } else {
         echo 'Unable to register user';
-    }
-
+    } 
 }
 
 ?>

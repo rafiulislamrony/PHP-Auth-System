@@ -1,4 +1,5 @@
-<?php
+<?php 
+include_once 'app/guest.php';
 include_once 'app/User.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -7,7 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user->password = $_POST['password'];
     
     if ($user->login()) {
-        echo 'User Login';
+        $_SESSION['user_id']= $user->id;
+        $_SESSION['user_name']= $user->name;
+        header('Location: dashboard.php');
+        exit();
     } else {
         echo 'Unable to Login user';
     }
