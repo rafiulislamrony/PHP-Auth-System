@@ -1,3 +1,21 @@
+<?php
+include_once 'app/User.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $user = new User; 
+    $user->email = $_POST['email'];
+    $user->password = $_POST['password'];
+    
+    if ($user->login()) {
+        echo 'User Login';
+    } else {
+        echo 'Unable to Login user';
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,14 +33,14 @@
         <div class="row justify-content-center">
             <div class="col-sm-6 pt-4">
                 <h2>Login Form</h2>
-                <form action="/action_page.php">
+                <form action="login.php" method="POST"  >
                     <div class="mb-3 mt-3">
                         <label for="email">Email:</label>
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                     </div>
                     <div class="mb-3">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <a href="register.php" class="btn btn-dark">Register</a>

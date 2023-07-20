@@ -25,6 +25,20 @@ class User extends Database
             return false;
         } 
     }
+    
+    public function login()
+    {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE email = :email";
+        $stmt = $this->conn->prepare($query); 
+        $stmt->bindParam(':email', $this->email); 
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row && password_verify($this->password, $row['password'])) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
 
 }
 
